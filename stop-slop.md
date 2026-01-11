@@ -50,6 +50,25 @@ When writing prose, follow these.
 - "Unpack" (before analysis)
 - "Lean into"
 - "Landscape" (for context)
+- "At its core"
+- "In today's [X]"
+- "It's worth noting"
+- "Interestingly,"
+- "Importantly,"
+- "Crucially,"
+- "At the end of the day"
+- "When it comes to"
+- "In a world where"
+- "The reality is"
+- "Make no mistake"
+- "Here's why that matters"
+- "Game-changer"
+- "Double down"
+- "Deep dive"
+- "Take a step back"
+- "Moving forward"
+- "On the same page"
+- "Circle back"
 
 ## Never use these structures
 
@@ -63,6 +82,10 @@ When writing prose, follow these.
 - "This unlocks something. [Word]."
 - "By the time X, I was Y."
 - "X that isn't Y" — say "X is broken" not "X that isn't working"
+- "The question isn't X. It's Y."
+- "X. And Y. And Z." (dramatic fragmentation)
+- "Here's what I mean:"
+- "Think about it:"
 
 ## Avoid these patterns
 
@@ -75,6 +98,12 @@ When writing prose, follow these.
 - Em-dashes before reveals.
 - Explaining metaphors after using them.
 - Hedging with "most"
+- Overusing "actually" and "really"
+- Starting with "I think" when stating facts
+- Rhetorical questions followed immediately by answers
+- Lists that always have exactly 3 or 5 items
+- Every paragraph ending with a one-sentence kicker
+- Using "straightforward" to describe anything
 
 ## While writing
 
@@ -85,6 +114,24 @@ Not every paragraph needs a conclusion.
 Trust the reader. No softening, no reassurance, no justification.
 
 Cut anything that sounds quotable.
+
+## Examples
+
+**Before:** "Here's the thing: building products is hard. Not because the technology is complex. Because people are complex. Let that sink in."
+
+**After:** "Building products is hard. Technology is manageable. People aren't."
+
+---
+
+**Before:** "It turns out that most teams struggle with alignment. The uncomfortable truth is that nobody wants to admit they're confused. And that's okay."
+
+**After:** "Teams struggle with alignment. Nobody admits confusion."
+
+---
+
+**Before:** "In today's fast-paced landscape, we need to lean into discomfort and navigate uncertainty with clarity. This matters because your competition isn't waiting."
+
+**After:** "Move faster. Your competition is."
 
 ## Scoring
 

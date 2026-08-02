@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "WRITING-ROUTE-001",
+      "prompt": "Rewrite this release note without changing its facts, links, or voice.",
+      "expected_skills": ["writing"],
+      "mode": "rewrite",
+      "protected": ["facts", "links", "voice"]
+    },
+    {
+      "id": "WRITING-ROUTE-002",
+      "prompt": "Review this post for formulaic prose. Do not edit it.",
+      "expected_skills": ["writing"],
+      "mode": "review-only",
+      "protected": []
+    },
+    {
+      "id": "WRITING-ROUTE-003",
+      "prompt": "Draft a launch post for a new package.",
+      "expected_skills": [],
+      "mode": "outside-scope",
+      "protected": []
+    },
+    {
+      "id": "WRITING-ROUTE-004",
+      "prompt": "Review the README prose, then review the TypeScript example for runtime defects.",
+      "expected_skills": ["writing", "code"],
+      "mode": "paired",
+      "protected": ["code"]
+    },
+    {
+      "id": "WRITING-ROUTE-005",
+      "prompt": "Was this article written by AI?",
+      "expected_skills": ["writing"],
+      "mode": "authorship-refusal",
+      "protected": []
+    },
+    {
+      "id": "WRITING-ROUTE-006",
+      "prompt": "Review this function for logic errors and missing tests.",
+      "expected_skills": ["code"],
+      "mode": "outside-scope",
+      "protected": ["code"]
+    }
+  ]
+}

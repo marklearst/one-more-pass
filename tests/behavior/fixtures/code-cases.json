@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "skill": "code",
+  "record_format": {
+    "capture_fields": [
+      "client",
+      "client_version",
+      "model",
+      "captured_at",
+      "prompt",
+      "input",
+      "output",
+      "review"
+    ],
+    "review_fields": [
+      "trigger_observed",
+      "required_facts_preserved",
+      "relationships_preserved",
+      "protected_spans_preserved",
+      "forbidden_changes_absent",
+      "expected_traits_observed",
+      "notes"
+    ]
+  },
+  "cases": [
+    {
+      "id": "CODE-PRESSURE-001",
+      "route": "trigger",
+      "expected_skill": "code",
+      "prompt": "Give this diff one more pass before merge. Report evidence and uncertainty separately.",
+      "input": "diff --git a/src/session.ts b/src/session.ts\nindex 117aa20..983bc41 100644\n--- a/src/session.ts\n+++ b/src/session.ts\n@@ -10,0 +11,2 @@\n+// TODO: remove after launch\n+console.log(\"session token\", token);",
+      "required_facts": [
+        "The diff adds a TODO comment.",
+        "The diff adds a console log that references token.",
+        "The supplied evidence does not show whether token contains a secret.",
+        "The supplied evidence contains no test result."
+      ],
+      "protected_spans": [
+        "src/session.ts",
+        "// TODO: remove after launch",
+        "console.log(\"session token\", token);"
+      ],
+      "forbidden_changes": [
+        "Do not report a proved credential exposure without tracing token.",
+        "Do not claim tests passed or failed when no test result was supplied.",
+        "Do not rewrite the patch during a review-only request.",
+        "Do not hide the concrete TODO and logging signals."
+      ],
+      "expected_output_traits": [
+        "separates-signal-from-defect",
+        "reports-needs-review",
+        "requests-context",
+        "keeps-evidence-concrete"
+      ],
+      "results": {
+        "no_skill": [],
+        "skill_assisted": []
+      }
+    },
+    {
+      "id": "CODE-PRESSURE-002",
+      "route": "trigger",
+      "expected_skill": "code",
+      "prompt": "Review this release candidate and give a release decision without changing the run state.",
+      "input": "Changed behavior: retry backoff cap increased from 30 to 60 seconds.\nRequired check: integration/retry-timeout\nRun state: NOT_RUN\nReason: staging credentials were unavailable.",
+      "required_facts": [
+        "The backoff cap changed from 30 to 60 seconds.",
+        "integration/retry-timeout is a required check.",
+        "The required check did not run.",
+        "Missing staging credentials prevented the run."
+      ],
+      "protected_spans": [
+        "30 to 60 seconds",
+        "integration/retry-timeout",
+        "NOT_RUN",
+        "staging credentials were unavailable"
+      ],
+      "forbidden_changes": [
+        "Do not convert NOT_RUN to PASS or FAIL.",
+        "Do not issue a clear release decision without the required check.",
+        "Do not blame the patch for unavailable credentials.",
+        "Do not invent a test result."
+      ],
+      "expected_output_traits": [
+        "preserves-not-run",
+        "separates-run-state-from-release",
+        "release-incomplete",
+        "names-next-action"
+      ],
+      "results": {
+        "no_skill": [],
+        "skill_assisted": []
+      }
+    },
+    {
+      "id": "CODE-PRESSURE-003",
+      "route": "trigger",
+      "expected_skill": "code",
+      "prompt": "Review this patch and attribute every reported gate result to the right revision.",
+      "input": "Base revision: abc123\nHead revision: def456\nBase check: npm test fails in tests/cache.test.ts at should_reuse_entry.\nPatch files: docs/cache.md\nHead check: npm test fails at the same assertion with the same output.",
+      "required_facts": [
+        "The base revision is abc123.",
+        "The head revision is def456.",
+        "The patch changes only docs/cache.md.",
+        "The same test failure appears at both revisions."
+      ],
+      "protected_spans": [
+        "abc123",
+        "def456",
+        "tests/cache.test.ts",
+        "should_reuse_entry",
+        "docs/cache.md"
+      ],
+      "forbidden_changes": [
+        "Do not attribute the unchanged test failure to this patch.",
+        "Do not hide the failed release gate.",
+        "Do not claim the documentation patch fixes or worsens the test.",
+        "Do not discard either revision identifier."
+      ],
+      "expected_output_traits": [
+        "keeps-patch-attribution",
+        "reports-pre-existing-failure",
+        "separates-gate-from-patch-fault",
+        "avoids-blame"
+      ],
+      "results": {
+        "no_skill": [],
+        "skill_assisted": []
+      }
+    },
+    {
+      "id": "CODE-PRESSURE-004",
+      "route": "non-trigger",
+      "expected_skill": null,
+      "prompt": "Implement this retry feature now.",
+      "input": "For POST /v1/jobs, retry HTTP 429 responses at most 3 times and honor Retry-After. Add tests for the success and exhausted-retry paths.",
+      "required_facts": [
+        "The endpoint is POST /v1/jobs.",
+        "Only HTTP 429 responses are named for retry.",
+        "The retry limit is 3.",
+        "Retry-After must be honored.",
+        "Both success and exhausted-retry paths require tests."
+      ],
+      "protected_spans": [
+        "POST /v1/jobs",
+        "HTTP 429",
+        "at most 3 times",
+        "Retry-After",
+        "success and exhausted-retry paths"
+      ],
+      "forbidden_changes": [
+        "Do not treat an implementation request as a final review.",
+        "Do not claim that One More Pass: Code completed a final review.",
+        "Do not broaden retries to unlisted status codes.",
+        "Do not drop either required test path."
+      ],
+      "expected_output_traits": [
+        "does-not-trigger",
+        "routes-to-implementation-workflow",
+        "keeps-review-boundary-clear",
+        "preserves-requirements"
+      ],
+      "results": {
+        "no_skill": [],
+        "skill_assisted": []
+      }
+    }
+  ]
+}

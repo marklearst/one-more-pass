@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "skill": "writing",
+  "record_format": {
+    "capture_fields": [
+      "client",
+      "client_version",
+      "model",
+      "captured_at",
+      "prompt",
+      "input",
+      "output",
+      "review"
+    ],
+    "review_fields": [
+      "trigger_observed",
+      "required_facts_preserved",
+      "relationships_preserved",
+      "protected_spans_preserved",
+      "forbidden_changes_absent",
+      "expected_traits_observed",
+      "notes"
+    ]
+  },
+  "cases": [
+    {
+      "id": "WRITING-PRESSURE-001",
+      "route": "trigger",
+      "expected_skill": "writing",
+      "prompt": "Give this paragraph one more pass before publication. Rewrite only what needs changing.",
+      "input": "Dr. Lee said, \"We did not find evidence that the patch caused the outage,\" but the draft report says the outage \"may have started between 03:10 and 03:25 UTC.\" Here's the thing: this underscores a crucial need for transparency.",
+      "required_facts": [
+        "Dr. Lee made the first statement.",
+        "The first statement does not claim the patch caused the outage.",
+        "The draft report is the source of the uncertain time range.",
+        "The possible start time is between 03:10 and 03:25 UTC."
+      ],
+      "protected_spans": [
+        "Dr. Lee",
+        "\"We did not find evidence that the patch caused the outage,\"",
+        "the draft report",
+        "\"may have started between 03:10 and 03:25 UTC.\""
+      ],
+      "forbidden_changes": [
+        "Do not remove or reverse the negation in Dr. Lee's statement.",
+        "Do not increase may to certainty.",
+        "Do not attach either quotation to a different source.",
+        "Do not invent a citation or supporting evidence."
+      ],
+      "expected_output_traits": [
+        "removes-unsupported-close",
+        "preserves-negation",
+        "preserves-uncertainty",
+        "preserves-quotations",
+        "preserves-attribution"
+      ],
+      "results": {
+        "no_skill": [],
+        "skill_assisted": []
+      }
+    },
+    {
+      "id": "WRITING-PRESSURE-002",
+      "route": "trigger",
+      "expected_skill": "writing",
+      "prompt": "Review this paragraph only. Do not edit it unless a concrete problem changes its meaning or readability.",
+      "input": "Safari, not Chrome, drops the cookie. The bug appears only on iOS 18.4 and later, and we have reproduced it on 2 of 7 test devices.",
+      "required_facts": [
+        "Safari is affected.",
+        "Chrome is excluded.",
+        "The bug is limited to iOS 18.4 and later.",
+        "The reproduction count is 2 of 7 devices."
+      ],
+      "protected_spans": [
+        "Safari, not Chrome",
+        "only on iOS 18.4 and later",
+        "2 of 7"
+      ],
+      "forbidden_changes": [
+        "Do not remove the Safari and Chrome contrast.",
+        "Do not broaden the iOS version range.",
+        "Do not change the reproduction count.",
+        "Do not rewrite a clear paragraph merely to make it different."
+      ],
+      "expected_output_traits": [
+        "leaves-valid-contrast-intact",
+        "preserves-only-scope",
+        "preserves-count",
+        "returns-review-only"
+      ],
+      "results": {
+        "no_skill": [],
+        "skill_assisted": []
+      }
+    },
+    {
+      "id": "WRITING-PRESSURE-003",
+      "route": "trigger",
+      "expected_skill": "writing",
+      "prompt": "Rewrite this release note for publication while keeping its facts, voice, command, and URL exact.",
+      "input": "Here's what matters: Acme CLI 4.2 fixes the cache bug. I ain't calling the damn thing done until `acme verify` passes. Details: https://example.test/acme-4-2. This is genuinely huge.",
+      "required_facts": [
+        "The product is Acme CLI 4.2.",
+        "The release fixes the cache bug.",
+        "The writer requires acme verify to pass before calling the work done.",
+        "The details URL points to the 4.2 release."
+      ],
+      "protected_spans": [
+        "Acme CLI 4.2",
+        "I ain't calling the damn thing done",
+        "`acme verify`",
+        "https://example.test/acme-4-2"
+      ],
+      "forbidden_changes": [
+        "Do not change the package name or version.",
+        "Do not flatten the writer's dialect or remove the profanity.",
+        "Do not alter the command or URL.",
+        "Do not replace unsupported praise with different unsupported praise."
+      ],
+      "expected_output_traits": [
+        "removes-empty-frame",
+        "removes-unsupported-praise",
+        "preserves-dialect",
+        "preserves-profanity",
+        "preserves-code",
+        "preserves-url"
+      ],
+      "results": {
+        "no_skill": [],
+        "skill_assisted": []
+      }
+    },
+    {
+      "id": "WRITING-PRESSURE-004",
+      "route": "non-trigger",
+      "expected_skill": null,
+      "prompt": "Draft a launch post from this product brief.",
+      "input": "Product: Beacon 1.3\nRelease date: 2026-08-15\nConstraint: available only to invited teams.",
+      "required_facts": [
+        "The product is Beacon 1.3.",
+        "The release date is 2026-08-15.",
+        "Availability is limited to invited teams."
+      ],
+      "protected_spans": [
+        "Beacon 1.3",
+        "2026-08-15",
+        "available only to invited teams"
+      ],
+      "forbidden_changes": [
+        "Do not treat a blank-page drafting request as a final editorial pass.",
+        "Do not invent product benefits or wider availability.",
+        "Do not change the release date."
+      ],
+      "expected_output_traits": [
+        "does-not-trigger",
+        "routes-to-normal-writing-support",
+        "keeps-plugin-boundary-clear"
+      ],
+      "results": {
+        "no_skill": [],
+        "skill_assisted": []
+      }
+    },
+    {
+      "id": "WRITING-PRESSURE-005",
+      "route": "trigger",
+      "expected_skill": "writing",
+      "prompt": "Give this social post one more pass before publication. Keep my first-person judgment and return only the revised post.",
+      "input": "Hot take: I think design reviews fail when nobody names who owns the decision. It is not just about process; it is about accountability. Without an owner, no one sets the deadline and nothing changes. Let that sink in. What is your take? Tell me in the comments. If this helped, save it and share it with your network. Follow me to learn how to build with AI.",
+      "required_facts": [
+        "The writer thinks design reviews fail when decision ownership is unnamed.",
+        "The post says process and accountability both matter.",
+        "The post links missing ownership to missing deadlines and change."
+      ],
+      "protected_spans": [
+        "I think",
+        "design reviews fail when nobody names who owns the decision",
+        "Without an owner, no one sets the deadline and nothing changes."
+      ],
+      "forbidden_changes": [
+        "Do not turn the writer's judgment into an impersonal fact.",
+        "Do not remove process or accountability from the contrast.",
+        "Do not invent evidence, results, or a new call to action.",
+        "Do not keep requests for comments, saves, shares, or follows."
+      ],
+      "expected_output_traits": [
+        "removes-canned-social-hook",
+        "removes-engagement-bait",
+        "removes-formulaic-bot-copy",
+        "preserves-first-person-judgment",
+        "preserves-causal-relationship",
+        "returns-rewrite-only"
+      ],
+      "results": {
+        "no_skill": [],
+        "skill_assisted": []
+      }
+    },
+    {
+      "id": "WRITING-PRESSURE-006",
+      "route": "trigger",
+      "expected_skill": "writing",
+      "prompt": "Review this work message only. Do not edit ordinary project instructions as if they were social engagement bait.",
+      "input": "Share this file with legal before the deadline. Save this document before closing the editor. Tag someone in the incident ticket so ownership is clear. Comment below the failing line in the diff. DM me LOG and I will send the patch. Share this file if legal approves it.",
+      "required_facts": [
+        "The file must be shared with legal before the deadline.",
+        "The document must be saved before the editor closes.",
+        "Someone must be tagged in the incident ticket for clear ownership.",
+        "A comment belongs below the failing line in the diff.",
+        "Sending LOG by direct message results in receiving the patch.",
+        "The final share is conditional on legal approval."
+      ],
+      "protected_spans": [
+        "Share this file with legal before the deadline.",
+        "Save this document before closing the editor.",
+        "Tag someone in the incident ticket so ownership is clear.",
+        "Comment below the failing line in the diff.",
+        "DM me LOG and I will send the patch.",
+        "Share this file if legal approves it."
+      ],
+      "forbidden_changes": [
+        "Do not remove an ordinary project instruction.",
+        "Do not remove a deadline, condition, location, keyword, or result.",
+        "Do not classify these work instructions as social engagement bait.",
+        "Do not rewrite a clear work message merely to make it different."
+      ],
+      "expected_output_traits": [
+        "keeps-ordinary-work-instructions",
+        "preserves-condition",
+        "does-not-misclassify-engagement-bait",
+        "returns-review-only"
+      ],
+      "results": {
+        "no_skill": [],
+        "skill_assisted": []
+      }
+    }
+  ]
+}

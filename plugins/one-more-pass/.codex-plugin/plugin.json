@@ -1,0 +1,36 @@
+{
+  "name": "one-more-pass",
+  "version": "1.0.0",
+  "description": "A final review for writing and code before it goes public.",
+  "author": {
+    "name": "Mark Learst"
+  },
+  "homepage": "https://github.com/marklearst/one-more-pass",
+  "repository": "https://github.com/marklearst/one-more-pass",
+  "license": "MIT",
+  "keywords": [
+    "writing",
+    "editing",
+    "code-review",
+    "release-readiness",
+    "quality"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "One More Pass",
+    "shortDescription": "Review writing and code before it ships.",
+    "longDescription": "One More Pass gives prose and code a careful final review. It protects meaning and voice in writing, then checks code against behavior, safety, tests, and release requirements.",
+    "developerName": "Mark Learst",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/marklearst/one-more-pass",
+    "defaultPrompt": [
+      "Give this writing one more pass before I publish it.",
+      "Give these changes one more pass before I merge them."
+    ]
+  }
+}

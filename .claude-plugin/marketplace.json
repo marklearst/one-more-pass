@@ -1,0 +1,18 @@
+{
+  "name": "one-more-pass-private",
+  "description": "Private marketplace for One More Pass.",
+  "owner": {
+    "name": "Mark Learst"
+  },
+  "plugins": [
+    {
+      "name": "one-more-pass",
+      "description": "A final review for writing and code before it goes public.",
+      "version": "1.0.0",
+      "source": "./plugins/one-more-pass",
+      "author": {
+        "name": "Mark Learst"
+      }
+    }
+  ]
+}

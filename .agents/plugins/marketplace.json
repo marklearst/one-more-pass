@@ -1,0 +1,20 @@
+{
+  "name": "one-more-pass-private",
+  "interface": {
+    "displayName": "One More Pass Private"
+  },
+  "plugins": [
+    {
+      "name": "one-more-pass",
+      "source": {
+        "source": "local",
+        "path": "./plugins/one-more-pass"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}

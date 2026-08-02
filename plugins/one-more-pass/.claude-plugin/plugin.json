@@ -1,0 +1,18 @@
+{
+  "name": "one-more-pass",
+  "description": "A final review for writing and code before it goes public.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Mark Learst"
+  },
+  "homepage": "https://github.com/marklearst/one-more-pass",
+  "repository": "https://github.com/marklearst/one-more-pass",
+  "license": "MIT",
+  "keywords": [
+    "writing",
+    "editing",
+    "code-review",
+    "release-readiness",
+    "quality"
+  ]
+}

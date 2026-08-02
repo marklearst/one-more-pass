@@ -1,0 +1,4 @@
+interface:
+  display_name: "One More Pass: Writing"
+  short_description: "Edit prose without losing its meaning or voice"
+  default_prompt: "Use $one-more-pass:writing for a strict final pass on this existing prose while preserving its meaning and voice."

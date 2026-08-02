@@ -1,0 +1,4 @@
+interface:
+  display_name: "One More Pass: Code"
+  short_description: "Find code risks before merge or release"
+  default_prompt: "Use $one-more-pass:code to review these changes for concrete defects, weak tests, and unsafe assumptions."

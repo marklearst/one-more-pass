@@ -1,0 +1,14 @@
+{
+  "checks": [
+    {
+      "id": "OMP-CODE-006",
+      "run_state": "FAIL",
+      "patch_attribution": "pre-existing",
+      "severity": "blocker",
+      "path": "ci/release.log",
+      "line": 12,
+      "evidence": "The release gate failed on both the base and head revisions.",
+      "action": "Repair or explicitly waive the existing gate before release; do not attribute it to this patch."
+    }
+  ]
+}

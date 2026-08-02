@@ -1,0 +1,14 @@
+{
+  "checks": [
+    {
+      "id": "OMP-CODE-006",
+      "run_state": "NOT_RUN",
+      "patch_attribution": "unknown",
+      "severity": "blocker",
+      "path": null,
+      "line": null,
+      "evidence": "The required release test did not run.",
+      "action": "Run the required test before making a release decision."
+    }
+  ]
+}

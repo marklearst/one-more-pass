@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "description": "Saved Writing rewrite and preservation cases.",
+  "cases": [
+    {
+      "id": "RED-001",
+      "name": "meaningful negation inside formulaic framing",
+      "text": "Here's the thing: the scheduler isn't slow because of Python. It's slow because each job opens three database connections. Let that sink in.",
+      "rewrite": "The scheduler is slow because each job opens three database connections, not because of Python.",
+      "rewrite_preserve": ["Python", "each job opens three database connections"],
+      "expected_rule_ids": ["SLP-SYN-001", "SLP-ENG-001"],
+      "preserve": ["isn't slow because of Python", "each job opens three database connections"],
+      "remove": ["Here's the thing", "Let that sink in"]
+    },
+    {
+      "id": "RED-002",
+      "name": "modality quantity and version boundary",
+      "text": "The patch will probably reduce median latency by about 12%, but it may fail on kernels older than 5.10.",
+      "rewrite": "The patch will probably reduce median latency by about 12%, but it may fail on kernels older than 5.10.",
+      "expected_rule_ids": [],
+      "preserve": ["probably", "about 12%", "may fail", "older than 5.10"],
+      "remove": []
+    },
+    {
+      "id": "RED-003",
+      "name": "verbatim passive quotation",
+      "text": "The hearing transcript says, “Mistakes were made.”",
+      "rewrite": "The hearing transcript says, “Mistakes were made.”",
+      "expected_rule_ids": [],
+      "preserve": ["“Mistakes were made.”"],
+      "remove": []
+    },
+    {
+      "id": "RED-004",
+      "name": "code and URL literals",
+      "text": "Run `tool --mode=deep-dive --retry=3`; see https://docs.example.com/really/landscape.",
+      "rewrite": "Run `tool --mode=deep-dive --retry=3`; see https://docs.example.com/really/landscape.",
+      "expected_rule_ids": [],
+      "preserve": ["`tool --mode=deep-dive --retry=3`", "https://docs.example.com/really/landscape"],
+      "remove": []
+    },
+    {
+      "id": "RED-005",
+      "name": "dialect profanity and speaker voice",
+      "text": "I ain't gonna pretend this shit worked; y'all saw it crash twice.",
+      "rewrite": "I ain't gonna pretend this shit worked; y'all saw it crash twice.",
+      "expected_rule_ids": [],
+      "preserve": ["I", "ain't", "gonna", "shit", "y'all", "twice"],
+      "remove": []
+    },
+    {
+      "id": "RED-006",
+      "name": "legitimate passive voice",
+      "text": "The samples were stored at −80 °C before analysis.",
+      "rewrite": "The samples were stored at −80 °C before analysis.",
+      "expected_rule_ids": [],
+      "preserve": ["were stored", "−80 °C"],
+      "remove": []
+    },
+    {
+      "id": "RED-007",
+      "name": "meaning-bearing triad",
+      "text": "The endpoint requires account_id, region, and checksum.",
+      "rewrite": "The endpoint requires account_id, region, and checksum.",
+      "expected_rule_ids": [],
+      "preserve": ["requires", "account_id", "region", "checksum"],
+      "remove": []
+    },
+    {
+      "id": "RED-008",
+      "name": "watched words in precise domain senses",
+      "text": "The prediction market rewards accurate forecasts; the browser navigates to the results in landscape orientation.",
+      "rewrite": "The prediction market rewards accurate forecasts; the browser navigates to the results in landscape orientation.",
+      "expected_rule_ids": [],
+      "preserve": ["market rewards", "browser navigates", "landscape orientation"],
+      "remove": []
+    },
+    {
+      "id": "RED-009",
+      "name": "genuine Wh question",
+      "text": "Which migration should we run first?",
+      "rewrite": "Which migration should we run first?",
+      "expected_rule_ids": [],
+      "preserve": ["Which", "should", "?"],
+      "remove": []
+    },
+    {
+      "id": "RED-010",
+      "name": "genuinely formulaic paragraph with real content",
+      "text": "Here's the thing: modern teams need to move fast. It's not just about speed; it's about clarity. Clear plans, crisp feedback, confident execution. Let that sink in.",
+      "rewrite": "Modern teams need speed, clarity, clear plans, crisp feedback, and confident execution.",
+      "rewrite_preserve": ["speed", "clarity", "clear plans", "crisp feedback", "confident execution"],
+      "expected_rule_ids": ["SLP-SYN-001", "SLP-ENG-001"],
+      "preserve": ["speed", "clarity", "Clear plans", "crisp feedback", "confident execution"],
+      "remove": ["Here's the thing", "Let that sink in"]
+    }
+  ]
+}

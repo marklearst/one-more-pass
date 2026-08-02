@@ -112,7 +112,7 @@ Codex:
 RELEASE_REF="<reviewed release tag or full commit SHA>"
 CODEX_GIT_HOME="$(mktemp -d)"
 
-CODEX_HOME="$CODEX_GIT_HOME" codex plugin marketplace add marklearst/one-more-pass --ref "$RELEASE_REF" --json
+CODEX_HOME="$CODEX_GIT_HOME" codex plugin marketplace add git@github.com:marklearst/one-more-pass.git --ref "$RELEASE_REF" --json
 CODEX_HOME="$CODEX_GIT_HOME" codex plugin add one-more-pass@one-more-pass-private --json
 CODEX_HOME="$CODEX_GIT_HOME" codex plugin marketplace upgrade one-more-pass-private --json
 CODEX_HOME="$CODEX_GIT_HOME" codex plugin remove one-more-pass@one-more-pass-private --json
@@ -126,17 +126,23 @@ Claude Code:
 
 ```bash
 RELEASE_REF="<reviewed release tag or full commit SHA>"
-CLAUDE_GIT_SOURCE="https://github.com/marklearst/one-more-pass.git#$RELEASE_REF"
+CLAUDE_GIT_BRANCH="main"
+CLAUDE_GIT_SOURCE="git@github.com:marklearst/one-more-pass.git#$CLAUDE_GIT_BRANCH"
 CLAUDE_GIT_HOME="$(mktemp -d)"
+CLAUDE_MARKETPLACE_ROOT="$CLAUDE_GIT_HOME/plugins/marketplaces/one-more-pass-private"
 
 CLAUDE_CONFIG_DIR="$CLAUDE_GIT_HOME" claude plugin marketplace add "$CLAUDE_GIT_SOURCE" --scope user
+test "$(git -C "$CLAUDE_MARKETPLACE_ROOT" rev-parse HEAD)" = "$RELEASE_REF"
 CLAUDE_CONFIG_DIR="$CLAUDE_GIT_HOME" claude plugin install one-more-pass@one-more-pass-private --scope user
 CLAUDE_CONFIG_DIR="$CLAUDE_GIT_HOME" claude plugin marketplace update one-more-pass-private
+test "$(git -C "$CLAUDE_MARKETPLACE_ROOT" rev-parse HEAD)" = "$RELEASE_REF"
 CLAUDE_CONFIG_DIR="$CLAUDE_GIT_HOME" claude plugin update one-more-pass@one-more-pass-private --scope user
 CLAUDE_CONFIG_DIR="$CLAUDE_GIT_HOME" claude plugin list --json
 CLAUDE_CONFIG_DIR="$CLAUDE_GIT_HOME" claude plugin uninstall one-more-pass@one-more-pass-private --scope user
 CLAUDE_CONFIG_DIR="$CLAUDE_GIT_HOME" claude plugin marketplace remove one-more-pass-private --scope user
 ```
+
+Claude Code treats the Git suffix after `#` as a branch or tag. It does not clone a raw commit SHA through that field. For a private `main` install, verify the cloned marketplace HEAD against the reviewed commit as shown above. A later tagged release can use its tag in `CLAUDE_GIT_BRANCH`.
 
 If either client cannot clone the private repository, fix Git authentication before continuing. Do not replace a failed Git proof with a local-path result.
 

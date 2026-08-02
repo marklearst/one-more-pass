@@ -59,7 +59,7 @@ codex plugin marketplace remove one-more-pass-private
 Your Git setup must already have access to the private repository.
 
 ```bash
-codex plugin marketplace add marklearst/one-more-pass --ref main
+codex plugin marketplace add git@github.com:marklearst/one-more-pass.git --ref main
 codex plugin add one-more-pass@one-more-pass-private
 ```
 
@@ -111,7 +111,7 @@ claude plugin marketplace remove one-more-pass-private --scope user
 Your Git setup must already have access to the private repository.
 
 ```bash
-claude plugin marketplace add marklearst/one-more-pass --scope user
+claude plugin marketplace add git@github.com:marklearst/one-more-pass.git#main --scope user
 claude plugin install one-more-pass@one-more-pass-private --scope user
 ```
 
